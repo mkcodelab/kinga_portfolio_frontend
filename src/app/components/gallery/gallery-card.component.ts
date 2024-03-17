@@ -4,8 +4,9 @@ import { Component, Input } from '@angular/core';
     standalone: true,
     selector: 'gallery-card',
     template: `
-        <div style="width: 500px; height: 500px;" class="object-center">
+        <div class="object-center">
             <img
+                loading="lazy"
                 class="object-cover object-center w-full "
                 [src]="src"
                 style="height: 500px;"

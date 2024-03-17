@@ -1,0 +1,26 @@
+<div class="mt-10">
+    <!-- free-mode="true" -->
+    <swiper-container navigation="true"
+                      slides-per-view="3"
+                      centered-slides="true"
+                      speed="500"
+                      space-between="20">
+        <swiper-slide *ngFor="let item of galleryImages"
+                      lazy="true"
+                      (click)="onSwiperSlideClick($event.target)">
+            <gallery-card class="mr-2"
+                          (click)="lightboxOpen = true"
+                          [src]="hostUrl + item"></gallery-card></swiper-slide>
+
+        <!-- test slides -->
+        <swiper-slide class="bg-slate-500"
+                      style="height: 500px;"
+                      *ngFor="let slide of [3, 4, 5, 6, 7]">slide: {{ slide }}</swiper-slide>
+    </swiper-container>
+
+    <lightbox *ngIf="lightboxOpen"
+              (close)="onLightboxClose()"
+              [src]="currentImage"
+              class="absolute top-0 left-0 w-full h-full bg-slate-500/50"
+              style="z-index: 999; backdrop-filter: blur(1px);"></lightbox>
+</div>
