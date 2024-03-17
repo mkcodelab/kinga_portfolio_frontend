@@ -1,0 +1,8 @@
+.nav-visible {
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+.nav-invisible {
+    transform: translateX(500px);
+    transition: transform 0.5s ease;
+}

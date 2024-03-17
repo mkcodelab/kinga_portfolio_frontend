@@ -1,0 +1,21 @@
+<div class="flex justify-between">
+    <button class="text-3xl"
+            routerLink="/">Kinga Chalas</button>
+
+    <div class="flex place-content-center">
+        <div [ngClass]="navVisible ? 'nav-visible' : 'nav-invisible'">
+            <button class="p-2">pl</button>
+            <button class="p-2"
+                    routerLink="/about">about</button>
+            <button class="p-2"
+                    routerLink="/work">work</button>
+            <button class="p-2"
+                    routerLink="/contact">contact</button>
+        </div>
+
+        <div class="bg-white p-2 flex items-center justify-center">
+            <button (click)="toggleNav()"
+                    class="bg-black w-5 h-5"></button>
+        </div>
+    </div>
+</div>
