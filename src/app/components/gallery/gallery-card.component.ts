@@ -5,7 +5,11 @@ import { Component, Input } from '@angular/core';
     selector: 'gallery-card',
     template: `
         <div style="width: 500px; height: 500px;" class="object-center">
-            <img class="object-cover object-center h-64 w-full " [src]="src" />
+            <img
+                class="object-cover object-center w-full "
+                [src]="src"
+                style="height: 500px;"
+            />
         </div>
     `,
     imports: [],

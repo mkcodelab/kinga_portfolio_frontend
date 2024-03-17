@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { GalleryCardComponent } from './gallery-card.component';
 import { GalleryImageService } from '../../services/gallery-image.service';
+import { environment } from '../../../environments/environment';
 
 export type imageUrl = {
     url: string;
@@ -12,8 +13,6 @@ export type imageUrl = {
     selector: 'gallery',
     template: `
         <div class="mt-10">
-            <p>Gallery</p>
-
             <div class="flex">
                 <gallery-card
                     class="mr-2"
@@ -30,31 +29,20 @@ export class GalleryComponent {
 
     galleryImageSvc = inject(GalleryImageService);
 
-    hostUrl = 'http://localhost:1337';
+    hostUrl = environment.apiUrl;
 
-    url = this.hostUrl + '/api/galleries';
+    private url = this.hostUrl + '/api/galleries';
 
     // options = { params: { populate: '*' } };
 
     // query string for url: populate[image][fields][0]=url
-    qs = '?populate[image][fields][0]=url';
+    private qs = '?populate[image][fields][0]=url';
 
     ngOnInit() {
-        // this.galleryImageSvc
-        //     .getData(this.url + this.qs)
-        //     .subscribe((response: GalleryData) => {
-        //         this.galleryImages = response.data;
-        //         console.log('galleryImagesData', this.galleryImages);
-        //     });
+        this.getImages();
+    }
 
-        // this.galleryImageSvc
-        //     .getImageAttrs(this.url + this.qs)
-        //     .subscribe((res: any) => {
-        //         res.forEach((attribute: any) => {
-        //             this.urlArr.push(attribute.image.data.attributes.url);
-        //         });
-        //     });
-
+    getImages() {
         this.galleryImageSvc
             .getImageUrls(this.url + this.qs)
             .subscribe((res) => {

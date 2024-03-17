@@ -1,24 +1,38 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, from, map, of } from 'rxjs';
+import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { GalleryImage } from '../components/gallery/interface';
 // import { GalleryData } from '../components/gallery/gallery.component';
 
-export interface GalleryData {
-    data: GalleryImage[];
+// export interface GalleryData {
+//     data: GalleryImage[];
+// }
+interface Response {
+    data: Entry<Image>[];
 }
 
 interface Image {
-    url: string;
+    createdAt: string;
+    image: ImageData;
+    publishedAt: string;
+    updatedAt: string;
+    // attributes: ImageAttributes;
+}
+
+interface ImageData {
+    data: ImageDataAttributes;
+    id: number;
+}
+
+interface ImageDataAttributes {
+    attributes: any;
+    id: number;
+    // url: string;
 }
 
 interface Entry<T> {
     id: number;
     attributes: T;
-}
-
-interface Response {
-    data: Entry<Image>[];
 }
 
 @Injectable({
@@ -41,11 +55,23 @@ export class GalleryImageService {
         );
     }
 
-    getImageUrls(url: string, options?: any): Observable<string[]> {
-        return this.http.get<Response>(url, options).pipe(
+    // getImageUrls(url: string, options?: any): Observable<string[]> {
+    //     return this.http.get<Response>(url, options).pipe(
+    //         catchError((error) => this.handleError(error)),
+    //         // tap((response) => console.log(response)),
+    //         map((response: any) => {
+    //             return response['data'].map((image: any) => {
+    //                 return image.attributes.image.data.attributes.url;
+    //             });
+    //         })
+    //     );
+    // }
+
+    getImageUrls(url: string): Observable<string[]> {
+        return this.http.get<Response>(url).pipe(
             catchError((error) => this.handleError(error)),
-            map((response: any) => {
-                return response['data'].map((image: any) => {
+            map((response: Response) => {
+                return response.data.map((image: Entry<Image>) => {
                     return image.attributes.image.data.attributes.url;
                 });
             })
