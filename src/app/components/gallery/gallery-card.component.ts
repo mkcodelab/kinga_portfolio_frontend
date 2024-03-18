@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
         <div class="object-center">
             <img
                 loading="lazy"
-                class="object-cover object-center w-full "
+                class="w-fit"
                 [src]="src"
                 style="height: 500px;"
             />

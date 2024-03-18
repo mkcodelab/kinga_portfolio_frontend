@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, inject } from '@angular/core';
 import { GalleryCardComponent } from './gallery-card.component';
 import { GalleryImageService } from '../../services/gallery-image.service';
@@ -13,7 +13,7 @@ export type imageUrl = {
     standalone: true,
     selector: 'gallery',
     templateUrl: './gallery.component.html',
-    imports: [NgFor, NgIf, GalleryCardComponent, LightboxComponent],
+    imports: [NgFor, NgIf, NgClass, GalleryCardComponent, LightboxComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GalleryComponent {
@@ -25,19 +25,22 @@ export class GalleryComponent {
 
     private url = this.hostUrl + '/api/galleries';
 
-    // options = { params: { populate: '*' } };
+    private getFullApiResponse = true;
 
-    // query string for url: populate[image][fields][0]=url
-    private qs = '?populate[image][fields][0]=url';
+    // query string for url
+    private qs = this.getFullApiResponse
+        ? '?populate=*'
+        : '?populate[image][fields][0]=url';
 
     lightboxOpen = false;
-    currentImage = '';
 
-    ngOnInit() {
+    currentImage: string;
+
+    ngOnInit(): void {
         this.getImages();
     }
 
-    getImages() {
+    getImages(): void {
         this.galleryImageSvc
             .getImageUrls(this.url + this.qs)
             .subscribe((res) => {
@@ -45,15 +48,15 @@ export class GalleryComponent {
             });
     }
 
-    onSwiperSlideClick(target: EventTarget | null) {
+    onSwiperSlideClick(target: EventTarget | null): void {
         if (target) {
             const el = target as HTMLImageElement;
             this.currentImage = el.src;
+            this.lightboxOpen = true;
         }
     }
 
-    onLightboxClose() {
-        console.log('closed ');
+    onLightboxClose(): void {
         this.lightboxOpen = false;
     }
 }

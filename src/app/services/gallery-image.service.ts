@@ -1,38 +1,36 @@
-import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, from, map, of, tap } from 'rxjs';
-import { GalleryImage } from '../components/gallery/interface';
-// import { GalleryData } from '../components/gallery/gallery.component';
+import { Observable, catchError, map, of, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-// export interface GalleryData {
-//     data: GalleryImage[];
-// }
 interface Response {
-    data: Entry<Image>[];
-}
-
-interface Image {
-    createdAt: string;
-    image: ImageData;
-    publishedAt: string;
-    updatedAt: string;
-    // attributes: ImageAttributes;
-}
-
-interface ImageData {
-    data: ImageDataAttributes;
-    id: number;
-}
-
-interface ImageDataAttributes {
-    attributes: any;
-    id: number;
-    // url: string;
+    data: Entry<ImageEntry>[];
 }
 
 interface Entry<T> {
     id: number;
     attributes: T;
+}
+
+interface ImageEntry {
+    createdAt: string;
+    image: Image;
+    publishedAt: string;
+    updatedAt: string;
+}
+
+interface Image {
+    data: ImageData;
+    id: number;
+}
+
+interface ImageData {
+    attributes: ImageDataAttributes;
+    id: number;
+}
+
+interface ImageDataAttributes {
+    url: string;
 }
 
 @Injectable({
@@ -43,13 +41,20 @@ export class GalleryImageService {
 
     error: any | undefined;
 
-    getData(url: string, options?: any): any {
-        return this.http.get<Response>(url, options);
+    // not sure if it should be passed to get methods or be hardcoded here
+    hostUrl = environment.apiUrl;
+
+    private url = this.hostUrl + '/api/galleries';
+
+    private qs = '?populate[image][fields][0]=url';
+
+    getData(): Observable<Response> {
+        return this.http.get<Response>(this.url + this.qs);
     }
 
-    getImageAttrs(url: string, options?: any): Observable<any[]> {
-        return this.http.get<Response>(url, options).pipe(
-            map((response: any) => {
+    getImageAttrs(url: string): Observable<any[]> {
+        return this.http.get<Response>(url).pipe(
+            map((response: Response) => {
                 return response['data'].map((image: any) => image.attributes);
             })
         );
@@ -70,8 +75,9 @@ export class GalleryImageService {
     getImageUrls(url: string): Observable<string[]> {
         return this.http.get<Response>(url).pipe(
             catchError((error) => this.handleError(error)),
+            tap((res) => console.log(res)),
             map((response: Response) => {
-                return response.data.map((image: Entry<Image>) => {
+                return response.data.map((image: Entry<ImageEntry>) => {
                     return image.attributes.image.data.attributes.url;
                 });
             })

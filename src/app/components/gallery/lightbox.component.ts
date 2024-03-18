@@ -3,19 +3,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     standalone: true,
     selector: 'lightbox',
-    template: `<div
-        class="w-full h-full flex justify-center"
-        (click)="onClose()"
-    >
-        <img [src]="src" />
-    </div>`,
+    template: `
+        <!-- w-full h-full -->
+        <div class="flex max-h-screen align-center p-10 w-fit">
+            <img [src]="src" class="w-fit" />
+        </div>
+    `,
 })
 export class LightboxComponent {
     @Input() src = '';
 
-    @Output() close = new EventEmitter();
+    // @Output() close = new EventEmitter();
 
-    onClose() {
-        this.close.emit();
-    }
+    // onClose() {
+    //     this.close.emit();
+    // }
 }
