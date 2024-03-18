@@ -59,4 +59,8 @@ export class GalleryComponent {
     onLightboxClose(): void {
         this.lightboxOpen = false;
     }
+
+    ngOnDestroy() {
+        console.log('destroyed');
+    }
 }

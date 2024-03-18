@@ -41,7 +41,6 @@ export class GalleryImageService {
 
     error: any | undefined;
 
-    // not sure if it should be passed to get methods or be hardcoded here
     hostUrl = environment.apiUrl;
 
     private url = this.hostUrl + '/api/galleries';
@@ -60,22 +59,10 @@ export class GalleryImageService {
         );
     }
 
-    // getImageUrls(url: string, options?: any): Observable<string[]> {
-    //     return this.http.get<Response>(url, options).pipe(
-    //         catchError((error) => this.handleError(error)),
-    //         // tap((response) => console.log(response)),
-    //         map((response: any) => {
-    //             return response['data'].map((image: any) => {
-    //                 return image.attributes.image.data.attributes.url;
-    //             });
-    //         })
-    //     );
-    // }
-
     getImageUrls(url: string): Observable<string[]> {
         return this.http.get<Response>(url).pipe(
             catchError((error) => this.handleError(error)),
-            tap((res) => console.log(res)),
+            // tap((res) => console.log(res)),
             map((response: Response) => {
                 return response.data.map((image: Entry<ImageEntry>) => {
                     return image.attributes.image.data.attributes.url;
