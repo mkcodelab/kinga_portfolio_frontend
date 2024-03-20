@@ -19,7 +19,7 @@ interface ImageEntry {
     updatedAt: string;
 }
 
-interface Image {
+export interface Image {
     data: ImageData;
     id: number;
 }
