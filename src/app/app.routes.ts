@@ -7,7 +7,7 @@ import { ContactComponent } from './components/contact/contact.component';
 export const routes: Routes = [
     { path: '', component: GalleryComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'work', component: WorkComponent },
+    { path: 'work', component: GalleryComponent },
     { path: 'contact', component: ContactComponent },
     { path: '**', redirectTo: '' },
 ];

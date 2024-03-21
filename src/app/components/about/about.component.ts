@@ -49,7 +49,6 @@ export class AboutComponent {
         this.http
             .get<Response>(this.hostUrl + '/api/about' + '/?populate=*')
             .subscribe((res) => {
-                console.log(res);
                 this.title = res.data.attributes.title;
                 this.bio = res.data.attributes.biography;
 

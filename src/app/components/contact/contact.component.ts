@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Image } from '../../services/gallery-image.service';
-import { RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface Response {
     data: AboutData;
@@ -26,9 +26,8 @@ interface AboutAttributes {
 })
 export class ContactComponent {
     hostUrl = environment.apiUrl;
-    http = inject(HttpClient);
 
-    // router = inject(RouterLinkActive);
+    http = inject(HttpClient);
 
     title: string;
 
@@ -38,7 +37,6 @@ export class ContactComponent {
         this.http
             .get<Response>(this.hostUrl + '/api/contact' + '/?populate=*')
             .subscribe((res) => {
-                console.log(res);
                 this.title = res.data.attributes.title;
 
                 this.backgroundImageUrl =
@@ -48,11 +46,5 @@ export class ContactComponent {
 
     ngOnInit() {
         this.getContent();
-        console.log(this.contactRouteActive);
-    }
-
-    get contactRouteActive(): boolean {
-        return true;
-        // return this.router.isActive;
     }
 }
