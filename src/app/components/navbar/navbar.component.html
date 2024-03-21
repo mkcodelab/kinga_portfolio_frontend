@@ -4,13 +4,17 @@
 
     <div class="flex place-content-center">
         <div [ngClass]="navVisible ? 'nav-visible' : 'nav-invisible'">
-            <button class="p-2">pl</button>
             <button class="p-2"
-                    routerLink="/about">about</button>
-            <button class="p-2"
-                    routerLink="/work">work</button>
-            <button class="p-2"
-                    routerLink="/contact">contact</button>
+                    (click)="switchLanguage()">{{lang}}</button>
+            <a class="p-2"
+               routerLink="/about"
+               routerLinkActive="line-through">about</a>
+            <a class="p-2"
+               routerLink="/work"
+               routerLinkActive="line-through">work</a>
+            <a class="p-2"
+               routerLink="/contact"
+               routerLinkActive="line-through">contact</a>
         </div>
 
         <div class="bg-white p-2 flex items-center justify-center">

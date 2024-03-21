@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Image } from '../../services/gallery-image.service';
+import { RouterLinkActive } from '@angular/router';
 
 interface Response {
     data: AboutData;
@@ -20,15 +21,14 @@ interface AboutAttributes {
 @Component({
     standalone: true,
     selector: 'contact',
-    template: `
-        <img [src]="hostUrl + backgroundImageUrl" alt="bg" />
-        <p>{{ title }}</p>
-    `,
+    templateUrl: './contact.component.html',
     imports: [],
 })
 export class ContactComponent {
     hostUrl = environment.apiUrl;
     http = inject(HttpClient);
+
+    // router = inject(RouterLinkActive);
 
     title: string;
 
@@ -48,5 +48,11 @@ export class ContactComponent {
 
     ngOnInit() {
         this.getContent();
+        console.log(this.contactRouteActive);
+    }
+
+    get contactRouteActive(): boolean {
+        return true;
+        // return this.router.isActive;
     }
 }
