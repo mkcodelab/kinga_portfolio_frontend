@@ -1,7 +1,55 @@
 <div class="overflow-hidden w-full h-full absolute top-0 left-0">
-    <p>{{ title }}</p>
-    <img class="absolute top-0 left-0 z-0"
+    <div class="absolute top-0 left-0 w-full h-full z-20 mt-32 p-2 md:p-10">
+        <div class="flex justify-between">
+            <div class="flex w-6/12">
+                <p class="block text-white font-hatton"
+                   style="font-size: 95px; line-height: 105px;">
+                    {{ title }}
+                    <span class="underline-anim">
+                        napisz →
+                    </span>
+                </p>
+
+            </div>
+
+            <form action=""
+                  class="flex flex-col w-5/12 mt-64">
+                <label class="text-white mb-2"
+                       for="name">imię i nazwisko</label>
+                <input class="text-white rounded-md border-white border-2 p-2 bg-transparent mb-7"
+                       type="text"
+                       name="name"
+                       placeholder="twoje imie i nazwisko">
+
+                <label class="text-white mb-2"
+                       for="email">email</label>
+                <input class="text-white rounded-md border-white border-2 p-2 bg-transparent mb-7"
+                       type="email"
+                       name="email"
+                       placeholder="twój adres email">
+
+                <label class="text-white mb-2"
+                       for="message">wiadomość</label>
+                <textarea class="text-white rounded-md border-white border-2 p-2 bg-transparent"
+                          type="textarea"
+                          name="message"
+                          placeholder="tresść wiadomości"></textarea>
+
+            </form>
+        </div>
+        <div class="flex justify-between mt-10">
+            <p class="text-white font-hatton"
+               style="font-size:22px;">instagram</p>
+            <button class="text-white font-hatton underline"
+                    style="font-size:22px;">wyślij →</button>
+        </div>
+
+    </div>
+
+    <!-- <img class="absolute top-0 left-0 z-0"
          [src]="hostUrl + backgroundImageUrl"
-         alt="bg" />
+         alt="bg" /> -->
+    <div class="absolute top-0 left-0 w-full h-full z-0 bg-slate-800">
+    </div>
 
 </div>

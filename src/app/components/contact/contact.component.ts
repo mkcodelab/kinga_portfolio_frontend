@@ -23,6 +23,7 @@ interface AboutAttributes {
     selector: 'contact',
     templateUrl: './contact.component.html',
     imports: [],
+    styleUrl: './contact.scss',
 })
 export class ContactComponent {
     hostUrl = environment.apiUrl;

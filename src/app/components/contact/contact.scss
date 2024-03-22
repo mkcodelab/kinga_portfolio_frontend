@@ -1,0 +1,20 @@
+.underline-anim {
+    overflow-x: hidden;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 15%;
+        left: 0;
+        width: 100%;
+        // transform: scaleX(0);
+        height: 2px;
+        background: white;
+        transform-origin: 100% 50%;
+        transition: transform 0.3s ease-in-out;
+    }
+    &:hover::after {
+        transform: scaleX(0);
+    }
+}
