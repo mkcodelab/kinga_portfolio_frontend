@@ -8,3 +8,17 @@ body {
     width: 100vw;
     overflow-x: hidden;
 }
+
+@font-face {
+    font-family: "pp hatton";
+    src: url("./assets/PP\ Hatton\ Ultralight\ 200.otf");
+}
+
+.font-hatton {
+    font-family: "pp hatton";
+}
+
+h1 {
+    font-family: "pp hatton";
+    font-weight: 200;
+}

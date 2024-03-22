@@ -1,8 +1,48 @@
 .nav-visible {
     transform: translateX(0);
-    transition: transform 0.5s ease;
+    transition: transform 2s cubic-bezier(1, 0.27, 0.3, 0.72);
 }
 .nav-invisible {
-    transform: translateX(500px);
-    transition: transform 0.5s ease;
+    transform: translateX(150%);
+    transition: transform 1s cubic-bezier(1, 0.27, 0.3, 0.72);
+}
+// strike through animation on nav item
+.strike {
+    overflow-x: hidden;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        background: black;
+        transform-origin: 100% 50%;
+        transition: transform 0.3s ease-in-out;
+    }
+    &:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.strike-white {
+    &:after {
+        background: white;
+    }
+}
+
+.menu-btn {
+    transition: transform 0.3s ease-in-out;
+}
+
+.on-hover:hover {
+    .navbar {
+        transform: translateX(0);
+    }
+    .menu-btn {
+        transform: translateX(200%);
+    }
 }

@@ -1,30 +1,37 @@
-<div class="flex justify-between"
-     (click)="navClicked()">
-    <button class="text-3xl"
+<div class="flex justify-between overflow-x-hidden">
+    <button class="text-3xl font-hatton"
             [ngClass]="{'text-white' : contactRouteActive}"
             routerLink="/">Kinga Chalas</button>
 
-    <div class="flex place-content-center"
+
+    <div class="flex place-content-center on-hover"
          [ngClass]="{'text-white' : contactRouteActive}">
-        <div [ngClass]="navVisible ? 'nav-visible' : 'nav-invisible'">
-            <button class="p-2"
+        <div class="navbar"
+             [ngClass]="navVisible ? 'nav-visible' : 'nav-invisible'">
+            <button class="mr-2 pt-2 pb-2"
                     (click)="switchLanguage()">{{lang}}</button>
-            <a class="p-2"
+
+            <a class="strike mr-2 pt-2 pb-2"
+               [ngClass]="{'strike-white' : contactRouteActive}"
                routerLink="/about"
                routerLinkActive="line-through">{{lang === 'en' ? 'about' : 'o mnie'}}</a>
-            <a class="p-2"
+
+            <a class="strike mr-2 pt-2 pb-2"
+               [ngClass]="{'strike-white' : contactRouteActive}"
                routerLink="/work"
                routerLinkActive="line-through">{{lang === 'en' ? 'work' : 'prace'}}</a>
-            <a class="p-2"
+
+            <a class="strike pt-2 pb-2"
+               [ngClass]="{'strike-white' : contactRouteActive}"
                routerLink="/contact"
                routerLinkActive="line-through">{{lang === 'en' ? 'contact' : 'kontakt'}}</a>
         </div>
 
-        <div class="bg-white p-2 flex items-center justify-center"
+        <div class=" p-2 flex items-center justify-center"
              [ngClass]="{'bg-transparent' : contactRouteActive}">
-            <button (click)="toggleNav()"
-                    [ngClass]="{'bg-white' : contactRouteActive}"
-                    class="bg-black w-5 h-5"></button>
+
+            <button [ngClass]="{'bg-white' : contactRouteActive}"
+                    class="menu-btn bg-black w-5 h-5"></button>
         </div>
     </div>
 </div>
