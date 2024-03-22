@@ -11,6 +11,8 @@ import { LangService } from '../../services/lang.service';
     styleUrls: ['navbar.scss'],
 })
 export class NavbarComponent {
+    logoVisible = false;
+
     navVisible = true;
 
     langSvc = inject(LangService);
@@ -45,5 +47,9 @@ export class NavbarComponent {
         setTimeout(() => {
             this.hideNav();
         }, 3000);
+
+        setTimeout(() => {
+            this.logoVisible = true;
+        }, 2500);
     }
 }

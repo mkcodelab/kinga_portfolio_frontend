@@ -1,6 +1,6 @@
 <div class="flex justify-between overflow-x-hidden">
     <button class="text-3xl font-hatton"
-            [ngClass]="{'text-white' : contactRouteActive}"
+            [ngClass]="{'text-white' : contactRouteActive, 'invisible': !logoVisible}"
             routerLink="/">Kinga Chalas</button>
 
 
@@ -8,7 +8,7 @@
          [ngClass]="{'text-white' : contactRouteActive}">
         <div class="navbar"
              [ngClass]="navVisible ? 'nav-visible' : 'nav-invisible'">
-            <button class="mr-2 pt-2 pb-2"
+            <button class="mr-2 pt-2 pb-2 pl-2"
                     (click)="switchLanguage()">{{lang}}</button>
 
             <a class="strike mr-2 pt-2 pb-2"
@@ -21,14 +21,13 @@
                routerLink="/work"
                routerLinkActive="line-through">{{lang === 'en' ? 'work' : 'prace'}}</a>
 
-            <a class="strike pt-2 pb-2"
+            <a class="strike mr-2 pt-2 pb-2"
                [ngClass]="{'strike-white' : contactRouteActive}"
                routerLink="/contact"
                routerLinkActive="line-through">{{lang === 'en' ? 'contact' : 'kontakt'}}</a>
         </div>
 
-        <div class=" p-2 flex items-center justify-center"
-             [ngClass]="{'bg-transparent' : contactRouteActive}">
+        <div class=" flex items-center justify-center">
 
             <button [ngClass]="{'bg-white' : contactRouteActive}"
                     class="menu-btn bg-black w-5 h-5"></button>

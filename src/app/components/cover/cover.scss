@@ -1,0 +1,25 @@
+.hide-animation {
+    transform: translateX(-200%);
+    transition: transform 2s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.title {
+    top: 40px;
+    left: 40px;
+    // transform: scale(0.2);
+    color: black;
+    font-size: 1.8rem;
+    transform-origin: top left;
+    transition: transform 1.5s ease, top 1.5s ease, font-size 1.5s ease;
+}
+
+.title-scale-move {
+    // transform: scale(1);
+    color: white;
+    font-size: 200px;
+    top: 25%;
+}
