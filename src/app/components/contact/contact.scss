@@ -18,3 +18,18 @@
         transform: scaleX(0);
     }
 }
+
+.grainy-bg {
+    // width: 100vw;
+    // height: 100vh;
+    // filter: contrast(120%) brightness(100%);
+    background: url("./grain2.svg"),
+        linear-gradient(
+            90deg,
+            rgb(24, 24, 24),
+            rgb(43, 34, 34),
+            rgb(44, 44, 44),
+            rgb(24, 24, 24),
+            rgb(49, 49, 49)
+        );
+}
