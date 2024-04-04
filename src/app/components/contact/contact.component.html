@@ -1,13 +1,17 @@
-<div class="overflow-hidden w-full h-full absolute top-0 left-0">
+<div class="overflow-x-hidden w-full h-full absolute top-0 left-0">
     <div class="absolute top-0 left-0 w-full h-full z-20 mt-32 p-2 md:p-10">
         <div class="flex justify-between">
             <div class="flex w-6/12">
                 <p class="block text-white font-hatton"
                    style="font-size: 95px; line-height: 105px;">
-                    {{ title }}
-                    <span class="underline-anim">
+                    <span *ifLang="'pl'">{{ title }}</span>
+                    <span *ifLang="'en'">{{ titleEng }}</span>
+                    <span class="underline-anim"
+                          *ifLang="'pl'">
                         napisz →
                     </span>
+                    <span class="underline-anim"
+                          *ifLang="'en'">send →</span>
                 </p>
 
             </div>
@@ -19,7 +23,7 @@
                 <input class="text-white rounded-md border-white border-2 p-2 bg-transparent mb-7"
                        type="text"
                        name="name"
-                       placeholder="twoje imie i nazwisko">
+                       [placeholder]="namePlaceholder">
 
                 <label class="text-white mb-2"
                        for="email">email</label>
@@ -33,7 +37,7 @@
                 <textarea class="text-white rounded-md border-white border-2 p-2 bg-transparent"
                           type="textarea"
                           name="message"
-                          placeholder="tresść wiadomości"></textarea>
+                          placeholder="treść wiadomości"></textarea>
 
             </form>
         </div>
@@ -46,11 +50,6 @@
 
     </div>
 
-    <!-- <img class="absolute top-0 left-0 z-0"
-         [src]="hostUrl + backgroundImageUrl"
-         alt="bg" /> -->
-    <!-- bg-slate-800 -->
-    <div class="absolute top-0 left-0 w-full h-full z-0 grainy-bg">
+    <div class="fixed top-0 left-0 w-full h-full z-0 grainy-bg">
     </div>
-
 </div>
