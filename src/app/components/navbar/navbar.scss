@@ -46,3 +46,9 @@
         transform: translateX(200%);
     }
 }
+
+.slide-left-mobile {
+    @media screen and (max-width: 400px) {
+        transform: translateX(-50%);
+    }
+}

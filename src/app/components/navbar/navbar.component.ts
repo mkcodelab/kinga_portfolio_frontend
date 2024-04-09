@@ -2,12 +2,20 @@ import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LangService } from '../../services/lang.service';
+import { ClickOutsideDirective } from '../../directives/clickOutisde.directive';
+import { IfLangDirective } from '../../directives/ifLang.directive';
 
 @Component({
     standalone: true,
     selector: 'navbar',
     templateUrl: './navbar.component.html',
-    imports: [RouterLink, RouterLinkActive, NgClass],
+    imports: [
+        RouterLink,
+        RouterLinkActive,
+        NgClass,
+        ClickOutsideDirective,
+        IfLangDirective,
+    ],
     styleUrls: ['navbar.scss'],
 })
 export class NavbarComponent {

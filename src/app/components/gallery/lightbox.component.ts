@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
     standalone: true,
     selector: 'lightbox',
     template: `
-        <div class="flex max-h-screen align-center p-10 w-fit">
+        <div class="flex max-h-screen align-center p-0 lg:p-10 w-fit">
             <img class="object-contain" [src]="src" />
         </div>
     `,

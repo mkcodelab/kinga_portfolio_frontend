@@ -22,4 +22,7 @@
     color: white;
     font-size: 200px;
     top: 25%;
+    @media screen and (max-width: 400px) {
+        font-size: 95px;
+    }
 }

@@ -22,17 +22,18 @@ interface AboutAttributes {
     standalone: true,
     selector: 'about',
     template: `
-        <div class="flex justify-between mt-32">
-            <div class="mr-32">
-                <h1 style="font-size: 95px;">{{ title }}</h1>
+        <div class="flex md:flex-row flex-col justify-between mt-32">
+            <div class="lg:mr-32 mr-0 mb-10">
+                <h1 class="lg:text-8xl text-6xl mb-10">{{ title }}</h1>
                 <p [innerHTML]="bio"></p>
             </div>
-
-            <img
-                class="object-contain"
-                [src]="hostUrl + imageUrl"
-                alt="bio image"
-            />
+            <div class="aspect-square h-96">
+                <img
+                    class="object-fill h-full"
+                    [src]="hostUrl + imageUrl"
+                    alt="bio image"
+                />
+            </div>
         </div>
     `,
     imports: [],

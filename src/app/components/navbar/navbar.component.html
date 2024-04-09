@@ -1,20 +1,24 @@
 <div class="flex justify-between overflow-x-hidden">
-    <button class="text-3xl font-hatton"
-            [ngClass]="{'text-white' : contactRouteActive, 'invisible': !logoVisible}"
+    <button class="text-3xl font-hatton whitespace-nowrap"
+            [ngClass]="{'text-white' : contactRouteActive, 'invisible': !logoVisible, 'slide-left-mobile': navVisible}"
             routerLink="/">Kinga Chalas</button>
 
 
     <div class="flex place-content-center on-hover"
+         (click)="navVisible = true"
+         (clickOutside)="navVisible = false"
          [ngClass]="{'text-white' : contactRouteActive}">
         <div class="navbar"
              [ngClass]="navVisible ? 'nav-visible' : 'nav-invisible'">
             <button class="mr-2 pt-2 pb-2 pl-2"
                     (click)="switchLanguage()">{{lang}}</button>
-
             <a class="strike mr-2 pt-2 pb-2"
                [ngClass]="{'strike-white' : contactRouteActive}"
                routerLink="/about"
-               routerLinkActive="line-through">{{lang === 'en' ? 'about' : 'o mnie'}}</a>
+               routerLinkActive="line-through">
+                <span *ifLang="'en'">about</span>
+                <span *ifLang="'pl'">o mnie</span>
+            </a>
 
             <a class="strike mr-2 pt-2 pb-2"
                [ngClass]="{'strike-white' : contactRouteActive}"
